@@ -37,10 +37,12 @@ jobs:
           java-version: '17'
           
       - name: Make gradlew executable
-        run: chmod +x "${{ steps.find_root.outputs.dir }}/gradlew"
+        run: |
+          chmod +x ${{ steps.find_root.outputs.dir }}/gradlew
           
       - name: Build APK
-        run: "${{ steps.find_root.outputs.dir }}/gradlew" assembleDebug
+        run: |
+          ${{ steps.find_root.outputs.dir }}/gradlew assembleDebug
       
       - uses: actions/upload-artifact@v4
         with:
